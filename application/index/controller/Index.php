@@ -1,7 +1,7 @@
 <?php
 namespace app\index\controller;
-
-class Index
+use think\Controller;
+class Index extends Controller
 {
     public function index()
     {
@@ -10,5 +10,11 @@ class Index
 
     public function hello() {
         echo "Hello";
+    }
+
+    //添加
+    public function add() {
+
+        return $this->fetch();
     }
 }
