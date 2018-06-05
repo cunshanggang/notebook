@@ -24,7 +24,8 @@ class Index extends Controller
             $data['start_time'] = strtotime($_REQUEST['start']);
             $data['end_time']   = strtotime($_REQUEST['end']);
             $data['date']       = date("Y-m-d",$data['start_time']);
-            $data['sleep_time'] = number_format((($data['end_time']-$data['start_time'])/3600),1);
+            $data['sleep_time'] = number_format(($data['end_time']-$data['start_time'])%86400/3600,1);
+            echo $data['sleep_time'];
             $data['status']     = $_REQUEST['status'];
             $data['times']      = $_REQUEST['times'];
             $data['is_wake']    = $_REQUEST['is_wake'];
