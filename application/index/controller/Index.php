@@ -25,7 +25,6 @@ class Index extends Controller
             $data['end_time']   = strtotime($_REQUEST['end']);
             $data['date']       = date("Y-m-d",$data['start_time']);
             $data['sleep_time'] = number_format(($data['end_time']-$data['start_time'])%86400/3600,1);
-            echo $data['sleep_time'];
             $data['status']     = $_REQUEST['status'];
             $data['times']      = $_REQUEST['times'];
             $data['is_wake']    = $_REQUEST['is_wake'];
@@ -33,7 +32,7 @@ class Index extends Controller
             $data['add_time']   = time();
             $m = new IndexModel();
             $m->insert($data);
-            echo $m->getLastSql();
+//            echo $m->getLastSql();//打印SQL语句
         } else {
             return $this->fetch();
         }
