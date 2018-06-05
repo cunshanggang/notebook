@@ -6,13 +6,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <title>添加记录</title>
-    <link rel="stylesheet" href="../../../__PUBLIC__/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../__PUBLIC__/static/css/bootstrap-datetimepicker.min.css">
-    <script type="text/javascript" src="../../../__PUBLIC__/static/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../../../__PUBLIC__/static/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../../__PUBLIC__/static/js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="../../../__PUBLIC__/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
-    <script type="text/javascript" src="../../../__PUBLIC__/static/js/moment-with-locales.js"></script>
+    <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="../../../__PUBLIC__/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/moment-with-locales.js"></script>
     <style type="text/css">
         /*@media(max-width: 1199px){body{background-color:yellow;}}*/
         /*@media(max-width: 991px){body{background-color:green;}}*/
@@ -37,12 +37,12 @@
 <body>
 <div class="row">
     <div class="container" id="conCen">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" id="myForm">
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Start Time</label>
                 <div class="col-sm-10">
                     <a class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" id='nowdate1' name="start"/>
+                        <input type='text' class="form-control" id='nowdate1' name="start" readonly/>
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -53,7 +53,7 @@
                 <label for="inputPassword3" class="col-sm-2 control-label">End Time</label>
                 <div class="col-sm-10">
                     <a class='input-group date' id='datetimepicker2'>
-                        <input type='text' class="form-control" id='nowdate2' name="start"/>
+                        <input type='text' class="form-control" id='nowdate2' name="end" readonly/>
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -63,7 +63,7 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Status</label>
                 <div class="col-sm-10">
-                    <select name="status" class="form-control">
+                    <select name="status" id="myStatus" class="form-control">
                         <option value="1">Excellent</option>
                         <option value="2">Good</option>
                         <option value="3">Average</option>
@@ -74,37 +74,38 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Times</label>
                 <div class="col-sm-10">
-                    <select name="times" class="form-control">
+                    <select name="times" id="myTimes" class="form-control">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5+</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Is</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">Is Wake</label>
                 <div class="col-sm-10">
-                    <select class="form-control">
+                    <select name="wake" id="myWake" class="form-control">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4+</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Note</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea id="myContent" class="form-control" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Commit</button>
+                    <button type="button" id="myBtn" class="btn btn-default">Commit</button>
                 </div>
             </div>
         </form>
@@ -129,6 +130,36 @@
 
     });
     //日期插件 end
+    $(function () {
+        $("#myBtn").on('click',function() {
+            var start,end,status,times,is_wake,note;
+            start = $("#nowdate1").val();
+            end   = $("#nowdate2").val();
+            status = $("#myStatus").val();
+            times = $("#myTimes").val();
+            is_wake = $("#myWake").val();
+            note = $("#myContent").val();
+            if((compareDate(start,end)) || (start == "") || (end == "")) {
+                alert("Please fill in the time correctly!");
+            }
+
+            //ajax提交
+            $.ajax({
+                type:"POST",
+                url:'{:url("Index/add")}',
+                data:"start="+start+"&end="+end+"&status="+status+"&times="+times+"&is_wake="+is_wake+"&note="+note,
+                success:function () {
+                    //提交完成时候，马上将表单置空
+                    $("#myForm input").val('');
+                }
+            });
+        });
+    });
+
+    //比较两个时间的大小
+    function compareDate(d1,d2) {
+        return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
+    }
 </script>
 </body>
 </html>
