@@ -1,6 +1,9 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use app\index\model\IndexModel;
+use think\Model;
+
 class Index extends Controller
 {
     public function index()
@@ -14,7 +17,20 @@ class Index extends Controller
 
     //添加
     public function add() {
-
         return $this->fetch();
+    }
+
+    //测试
+    public function test() {
+//        $m = new IndexModel();
+//        $r = $m->select();
+//        echo "<pre>";
+//        print_r($r[0]['id']);
+//        echo "</pre>";
+
+        $m = model('IndexModel');
+        echo "<pre>";
+        print_r($m->id);
+        echo "</pre>";
     }
 }
