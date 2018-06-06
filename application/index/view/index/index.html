@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="../../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="../../../js/moment-with-locales.js"></script>
+</head>
+<body>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <caption>响应式表格布局</caption>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>日期</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>睡眠时间</th>
+            <th>状态</th>
+            <th>次数</th>
+            <th>醒来次数</th>
+            <th>笔记</th>
+            <th>添加时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name='list' id='vo'}
+        <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.date}</td>
+            <td>{$vo.start_time}</td>
+            <td>{$vo.end_time}</td>
+            <td>{$vo.sleep_time}</td>
+            <td>{$vo.status}</td>
+            <td>{$vo.times}</td>
+            <td>{$vo.is_wake}</td>
+            <td>{$vo.note}</td>
+            <td>{$vo.add_time}</td>
+        </tr>
+        {/volist}
+
+        </tbody>
+    </table>
+</div>
+{$list->render()}
+</body>
+</html>
