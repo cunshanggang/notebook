@@ -11,7 +11,7 @@ class Index extends Controller
     public function index()
     {
         $m = new IndexModel();
-        $list = $m->paginate(1);
+        $list = $m->paginate(10);
 //        echo "<pre>";
 //        print_r($list);
 //        echo "</pre>";
@@ -38,8 +38,12 @@ class Index extends Controller
             $data['note']       = $_REQUEST['note'];
             $data['add_time']   = time();
             $m = new IndexModel();
-            $m->insert($data);
+            $r = $m->insert($data);
 //            echo $m->getLastSql();//打印SQL语句
+//            $this->success("添加成功!","{:url('Index/index')}");
+            if($r){
+                return 1;
+            }
         } else {
             return $this->fetch();
         }

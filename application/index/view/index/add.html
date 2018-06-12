@@ -39,7 +39,7 @@
     <div class="container" id="conCen">
         <form class="form-horizontal" role="form" id="myForm">
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Start Time</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">开始时间</label>
                 <div class="col-sm-10">
                     <a class='input-group date' id='datetimepicker1'>
                         <input type='text' class="form-control" id='nowdate1' name="start" readonly/>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">End Time</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">结束时间</label>
                 <div class="col-sm-10">
                     <a class='input-group date' id='datetimepicker2'>
                         <input type='text' class="form-control" id='nowdate2' name="end" readonly/>
@@ -61,18 +61,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Status</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
                 <div class="col-sm-10">
                     <select name="status" id="myStatus" class="form-control">
-                        <option value="1">Excellent</option>
-                        <option value="2">Good</option>
-                        <option value="3">Average</option>
-                        <option value="4">Poor</option>
+                        <option value="1">好</option>
+                        <option value="2">良</option>
+                        <option value="3">中</option>
+                        <option value="4">差</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Times</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">次数</label>
                 <div class="col-sm-10">
                     <select name="times" id="myTimes" class="form-control">
                         <option value="0">0</option>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Is Wake</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">醒来次数</label>
                 <div class="col-sm-10">
                     <select name="wake" id="myWake" class="form-control">
                         <option value="0">0</option>
@@ -98,18 +98,35 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Note</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">备注</label>
                 <div class="col-sm-10">
                     <textarea id="myContent" class="form-control" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" id="myBtn" class="btn btn-default">Commit</button>
+                    <button type="button" id="myBtn" class="btn btn-default">提交</button>
                 </div>
             </div>
         </form>
     </div>
+</div>
+<!-- 按钮触发模态框 -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
     //日期插件 start
@@ -148,10 +165,14 @@
                 type:"POST",
                 url:'{:url("Index/add")}',
                 data:"start="+start+"&end="+end+"&status="+status+"&times="+times+"&is_wake="+is_wake+"&note="+note,
-                success:function () {
+                success:function (msg) {
                     //提交完成时候，马上将表单置空
                     $("#myForm input").val('');
                     $("#myForm textarea").val('');
+                    if(msg == 1) {
+//                        alert("添加成功！");
+//                        window.location = "{:url('Index/index')}";
+                    }
                 }
             });
         });
