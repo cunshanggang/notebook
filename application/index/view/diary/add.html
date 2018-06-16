@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>添加日记</title>
+    <title>写日记</title>
     <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap-datetimepicker.min.css">
     <script type="text/javascript" src="../../../__PUBLIC__/js/jquery-3.3.1.min.js"></script>
@@ -47,8 +47,8 @@
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
-        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月15日</span>
-        <span class="col-sm-1 mgTop fontS floatLeft">星期五</span>
+        <span class="col-sm-2 mgTop fontS floatLeft" id="myDate"></span>
+        <span class="col-sm-1 mgTop fontS floatLeft" id="myWeek"></span>
         <div class="col-sm-1 wd">
             <select name="weather" id="weather" class="form-control fontS">
                 <option value="1">晴</option>
@@ -72,7 +72,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 btn-wd">
-            <button class="btn btn-default" style="width:100px;height:100px;">
+            <button type="button" class="btn btn-default" style="width:100px;height:100px;">
                 <i class="glyphicon glyphicon-plus" style="font-size:25px;color:LightGrey;"></i>
             </button>
         </div>
@@ -83,5 +83,31 @@
         </div>
     </div>
 </form>
+<script type="text/javascript">
+    $(function () {
+        $('#myDate').html(getTime());
+        $('#myWeek').html(getWeek());
+    });
+    //获取时间：年-月-日
+    function getTime() {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+
+        var now_time = year+"年"+month+"月"+day+"日";
+
+        return now_time;
+    }
+
+    //获取星期几
+    function getWeek() {
+        var a = new Array("日","一","二","三","四","五","六");
+        var week = new Date().getDay();
+        var str = "星期"+a[week];
+
+        return str;
+    }
+</script>
 </body>
 </html>

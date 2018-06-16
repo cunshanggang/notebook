@@ -28,15 +28,15 @@ class Index extends Controller
         //判断是否是ajax提交过来的数据，引入use think\Request
         if($request->isAjax()) {
             //将时间格式化为时间戳
+            $data['add_time']   = time();
             $data['start_time'] = strtotime($_REQUEST['start']);
             $data['end_time']   = strtotime($_REQUEST['end']);
-            $data['date']       = date("Y-m-d",$data['start_time']);
+            $data['date']       = date("Y-m-d",$data['add_time']-3600*24);
             $data['sleep_time'] = number_format(($data['end_time']-$data['start_time'])%86400/3600,1);
             $data['status']     = $_REQUEST['status'];
             $data['times']      = $_REQUEST['times'];
             $data['is_wake']    = $_REQUEST['is_wake'];
             $data['note']       = $_REQUEST['note'];
-            $data['add_time']   = time();
             $m = new IndexModel();
             $r = $m->insert($data);
 //            echo $m->getLastSql();//打印SQL语句
