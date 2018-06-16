@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>写日记</title>
+    <title>Diary</title>
     <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../__PUBLIC__/css/fileinput.min.css">
     <link rel="stylesheet" href="../../../__PUBLIC__/css/bootstrap-datetimepicker.min.css">
     <script type="text/javascript" src="../../../__PUBLIC__/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/fileinput.min.js"></script>
     <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../__PUBLIC__/js/zh.js"></script>
     <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="../../../__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript" src="../../../__PUBLIC__/js/moment-with-locales.js"></script>
@@ -31,7 +34,7 @@
             body{font-size:18px;}
             input[type='text']{width:300px;margin:0 auto;}
             .myText{width:300px;margin:0 auto;}
-            .fontS{font-size:12px;}
+            .fontS,.file-drop-zone-title,.file-caption-name,.myText,#mood{font-size:12px;}
             #weather{width:65px;}
             .head{width:300px;margin:0 auto;}
             .btn-wd{width:325px;margin:0 auto;}
@@ -43,7 +46,7 @@
     </style>
 </head>
 <body>
-<form class="form-horizontal">
+<form class="form-horizontal" enctype="multipart/form-data">
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
@@ -62,7 +65,7 @@
     <hr style="width:80%;margin:0 auto;">
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6 mgTop">
-            <input type="text" class="form-control" id="inputEmail3" placeholder="写下心情...">
+            <input type="text" class="form-control" name="mood" id="mood" placeholder="写下心情...">
         </div>
     </div>
     <div class="form-group">
@@ -71,10 +74,15 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10 btn-wd">
-            <button type="button" class="btn btn-default" style="width:100px;height:100px;">
+        <div class="col-sm-offset-2 col-sm-6 btn-wd">
+            <button type="button" class="btn btn-default" id="myBtn" style="width:100px;height:100px;">
                 <i class="glyphicon glyphicon-plus" style="font-size:25px;color:LightGrey;"></i>
             </button>
+            <div class="form-group mgTop" id="myFile" style="display:none;">
+                <div class="file-loading">
+                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -84,9 +92,32 @@
     </div>
 </form>
 <script type="text/javascript">
+    // 上传文件插件 start
+    $("#file-1").fileinput({
+        language:'zh',
+        theme: 'fa',
+        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        overwriteInitial: false,
+        maxFileSize: 25600,
+//        maxFilePreviewSize: 25600, // 25 MB
+        maxFilesNum: 3,
+//        maxFileCount: 9,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    });
+    //上传文件插件 end
     $(function () {
-        $('#myDate').html(getTime());
-        $('#myWeek').html(getWeek());
+        $('#myDate').html(getTime());//显示年月日
+        $('#myWeek').html(getWeek());//显示星期几
+
+        $('#myBtn').on('click',function(){
+            $('#myBtn').hide();
+            $('#myFile').show();
+
+        });
     });
     //获取时间：年-月-日
     function getTime() {
