@@ -29,44 +29,56 @@
         }
         @media only screen and (max-width: 479px) {
             body{font-size:18px;}
-            input[type='text']{width:300px;margin:0 auto;margin-top:30px;}
+            input[type='text']{width:300px;margin:0 auto;}
             .myText{width:300px;margin:0 auto;}
+            .fontS{font-size:12px;}
+            #weather{width:65px;}
+            .head{width:300px;margin:0 auto;}
+            .btn-wd{width:325px;margin:0 auto;}
+            .floatLeft{float:left;}
+            .mgLeft{margin-left:60px;}
         }
         .mgTop{margin-top:10px;}
+
     </style>
 </head>
 <body>
 <form class="form-horizontal">
-    <div class="form-group">
+    <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
-        <div class="form-group">
-            <span class="col-sm-2 mgTop">2018年06月15日</span>
-            <span class="col-sm-1 mgTop">星期五</span>
-            <div class="col-sm-1">
-                <select name="" id="" class="form-control">
-                    <option value="1">晴</option>
-                    <option value="2">阴</option>
-                    <option value="3">雨</option>
-                    <option value="4">雾</option>
-                    <option value="5">雪</option>
-                </select>
-            </div>
+        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月15日</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">星期五</span>
+        <div class="col-sm-1 wd">
+            <select name="weather" id="weather" class="form-control fontS">
+                <option value="1">晴</option>
+                <option value="2">阴</option>
+                <option value="3">雨</option>
+                <option value="4">雾</option>
+                <option value="5">雪</option>
+            </select>
+        </div>
+    </div>
+    <hr style="width:80%;margin:0 auto;">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6 mgTop">
+            <input type="text" class="form-control" id="inputEmail3" placeholder="写下心情...">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6">
-            <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
+            <textarea class="form-control myText" rows="8" placeholder="记录生活..."></textarea>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-6">
-            <textarea class="form-control myText" rows="8"></textarea>
+        <div class="col-sm-offset-2 col-sm-10 btn-wd">
+            <button class="btn btn-default" style="width:100px;height:100px;">
+                <i class="glyphicon glyphicon-plus" style="font-size:25px;color:LightGrey;"></i>
+            </button>
         </div>
-
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-2 col-sm-10 btn-wd">
             <button type="submit" class="btn btn-default">提交</button>
         </div>
     </div>
