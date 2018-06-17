@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-<form class="form-horizontal" enctype="multipart/form-data">
+<form class="form-horizontal" method="post" action="{:url('Diary/upload')}" enctype="multipart/form-data">
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
@@ -70,7 +70,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6">
-            <textarea class="form-control myText" rows="8" placeholder="记录生活..."></textarea>
+            <textarea class="form-control myText" name="content" rows="8" placeholder="记录生活..."></textarea>
         </div>
     </div>
     <div class="form-group">
@@ -80,7 +80,7 @@
             </button>
             <div class="form-group mgTop" id="myFile" style="display:none;">
                 <div class="file-loading">
-                    <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+                    <input id="file-1" type="file" name="img_data[]" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
                 </div>
             </div>
         </div>
@@ -96,16 +96,19 @@
     $("#file-1").fileinput({
         language:'zh',
         theme: 'fa',
-        uploadUrl: '#', // you must set a valid URL here else you will get an error
+        uploadUrl: '{:url("Diary/upload")}', // you must set a valid URL here else you will get an error
+//        uploadAsync: true,
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
+        showUpload:false,//不显示上传按钮
         maxFileSize: 25600,
 //        maxFilePreviewSize: 25600, // 25 MB
-        maxFilesNum: 3,
-//        maxFileCount: 9,
+        maxFilesNum: 9,
+        maxFileCount: 9,
         //allowedFileTypes: ['image', 'video', 'flash'],
         slugCallback: function (filename) {
             return filename.replace('(', '_').replace(']', '_');
+//            return filename;
         }
     });
     //上传文件插件 end

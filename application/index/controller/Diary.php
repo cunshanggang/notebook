@@ -7,6 +7,7 @@
  */
 namespace app\index\controller;
 use think\Controller;
+use think\Request;
 
 class Diary extends Controller {
     public function index() {
@@ -14,6 +15,28 @@ class Diary extends Controller {
     }
 
     public function add() {
+    if (request()->isPost()){
+        $result = $this->upload();
+        echo "<pre>";
+        print_r(json_decode($result));
+        echo "</pre>";
+    }
         return $this->fetch();
+    }
+
+    public function upload() {
+//        echo "<pre>";
+//        print_r($_FILES);
+//        echo "</pre>";
+//        $data = json_encode($_FILES['img_data']);
+//        echo $data;
+//        echo $_FILES['img_data']['name'];
+//        return json_encode($_FILES);
+        if(request()->isPost()) {
+            echo "<pre>";
+            print_r($_POST);
+            print_r($_FILES);
+            echo "</pre>";
+        }
     }
 }
