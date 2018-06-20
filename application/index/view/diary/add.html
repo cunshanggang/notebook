@@ -25,7 +25,7 @@
 
         }
         @media screen and (min-width: 960px) and (max-width: 1199px){
-            body{background-color:green;}
+            /*body{background-color:green;}*/
         }
         @media screen and (min-width: 768px) and (max-width: 959px) {
             body{background-color:red;}
@@ -80,7 +80,7 @@
             </button>
             <div class="form-group mgTop" id="myFile" style="display:none;">
                 <div class="file-loading">
-                    <input id="file-1" type="file" name="img_data[]" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+                    <input id="file-1" type="file" name="img_data[]" multiple class="file-loading" data-overwrite-initial="false" data-min-file-count="1">
                 </div>
             </div>
         </div>
@@ -96,20 +96,36 @@
     $("#file-1").fileinput({
         language:'zh',
         theme: 'fa',
-        uploadUrl: '{:url("Diary/upload")}', // you must set a valid URL here else you will get an error
+        uploadUrl: '#', // you must set a valid URL here else you will get an error
         uploadAsync: false,
+        autoReplace: false,
+        enctype: 'multipart/form-data',
         allowedFileExtensions: ['jpg', 'png', 'gif'],
-        overwriteInitial: false,
+        overwriteInitial: false,//不覆盖已存在的图片
         showUpload:false,//不显示上传按钮
         maxFileSize: 25600,
 //        maxFilePreviewSize: 25600, // 25 MB
         maxFilesNum: 9,
         maxFileCount: 9,
         //allowedFileTypes: ['image', 'video', 'flash'],
-        slugCallback: function (filename) {
-            return filename.replace('(', '_').replace(']', '_');
-//            return filename;
+        layoutTemplates:{
+//            actionDelete:'',//去除上传预览的缩略图中的删除图标
+            actionUpload:''//去除上传预览缩略图中的上传图片
+//            actionZoom:''//去除上传预览缩略图中查看详情预览的缩略图标
+        },
+//        slugCallback: function (filename) {
+//            return filename.replace('(', '_').replace(']', '_');
+////            return filename;
+//
+//        }
+        uploadExtraData: function() {
+            return {
+                userid: 100,
+                username: 'thomas'
+            };
         }
+    }).on("filebatchselected", function(event, files) {
+        $("#file-1").fileinput("upload");
     });
     //上传文件插件 end
     $(function () {

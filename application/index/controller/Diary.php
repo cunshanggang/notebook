@@ -16,10 +16,7 @@ class Diary extends Controller {
 
     public function add() {
     if (request()->isPost()){
-        $result = $this->upload();
-        echo "<pre>";
-        print_r(json_decode($result));
-        echo "</pre>";
+
     }
         return $this->fetch();
     }
