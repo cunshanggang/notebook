@@ -16,24 +16,66 @@ class Diary extends Controller {
 
     public function add() {
     if (request()->isPost()){
+//        $files = request()->file('img_data');
+        echo "<pre>";
+        print_r($_FILES);
+        echo "</pre>";
+        $files = $_FILES['img_data']['name'];
+//        echo count($files);exit;
+        $u = $files[0].$files[1];
+        if($_POST['title']) {
+            echo $u;
+        }
+        exit;
+        if(!empty($_POST)){
+            $weather = $_POST['weather'];
+            $title   = $_POST['title'];
+            $content = $_POST['content'];
+        }
+
+        if(!empty($_FILES)) {
+            $files = request()->file('img_data');
+            $url = $this->upload($files);
+            $pic_url = '';
+            foreach($url as $k=>$v) {
+                $pic_url .= $v.";";
+            }
+            $pic_url = substr($pic_url,0,-1);
+        }
+
+        //添加到数据库
+        $m = model("Diary");
+        $data['weather'] = $weather;
+        $data['title']   = $title;
+        $data['content'] = $content;
+        $data['pic_url'] = $pic_url;
+        $data['add_time'] = time();
+
+        $r = $m->insert($data);
+        if($r){
+           $this->success("添加成功!");
+        }
 
     }
         return $this->fetch();
     }
 
-    public function upload() {
-//        echo "<pre>";
-//        print_r($_FILES);
-//        echo "</pre>";
-//        $data = json_encode($_FILES['img_data']);
-//        echo $data;
-//        echo $_FILES['img_data']['name'];
-//        return json_encode($_FILES);
-        if(request()->isPost()) {
-            echo "<pre>";
-            print_r($_POST);
-            print_r($_FILES);
-            echo "</pre>";
+    public function upload($files) {
+        $url = array();
+        foreach($files as $file){
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+                //成功上传后 获取上传信息
+                //输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+                $u = $info->getSaveName();
+                array_push($url,$u);
+            }else{
+                // 上传失败获取错误信息
+                echo $files->getError();
+            }
         }
+
+        return $url;
     }
 }
