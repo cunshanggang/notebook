@@ -11,7 +11,7 @@ class Index extends Controller
     public function index()
     {
         $m = new IndexModel();
-        $list = $m->paginate(10);
+        $list = $m->order('id desc')->paginate(10);
 //        echo "<pre>";
 //        print_r($list);
 //        echo "</pre>";

@@ -17,9 +17,9 @@ class Diary extends Controller {
     public function add() {
     if (request()->isPost()){
 //        $files = request()->file('img_data');
-        echo "<pre>";
-        print_r($_FILES);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($_FILES);
+//        echo "</pre>";
         $files = $_FILES['img_data']['name'];
 //        echo count($files);exit;
         $u = $files[0].$files[1];
