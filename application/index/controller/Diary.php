@@ -15,39 +15,26 @@ class Diary extends Controller {
     }
 
     public function add() {
-    if (request()->isPost()){
-//        $files = request()->file('img_data');
-//        echo "<pre>";
-//        print_r($_FILES);
-//        echo "</pre>";
-        $files = $_FILES['img_data']['name'];
-//        echo count($files);exit;
-        $u = $files[0].$files[1];
-        if($_POST['title']) {
-            echo $u;
-        }
-        exit;
-        if(!empty($_POST)){
-            $weather = $_POST['weather'];
-            $title   = $_POST['title'];
-            $content = $_POST['content'];
-        }
 
-        if(!empty($_FILES)) {
+//        $url = $this->upload($files);
+//        $pic_url = '';
+//        foreach($url as $k=>$v) {
+//            $pic_url .= $v.";";
+//        }
+//        $pic_url = substr($pic_url,0,-1);
+        if (request()->isPost()){
             $files = request()->file('img_data');
             $url = $this->upload($files);
             $pic_url = '';
             foreach($url as $k=>$v) {
                 $pic_url .= $v.";";
             }
-            $pic_url = substr($pic_url,0,-1);
-        }
-
+        $pic_url = substr($pic_url,0,-1);
         //添加到数据库
         $m = model("Diary");
-        $data['weather'] = $weather;
-        $data['title']   = $title;
-        $data['content'] = $content;
+        $data['weather'] = $_POST['weather'];
+        $data['title']   = $_POST['title'];
+        $data['content'] = $_POST['content'];
         $data['pic_url'] = $pic_url;
         $data['add_time'] = time();
 

@@ -78,9 +78,9 @@
             <button type="button" class="btn btn-default" id="myBtn" style="width:100px;height:100px;">
                 <i class="glyphicon glyphicon-plus" style="font-size:25px;color:LightGrey;"></i>
             </button>
-            <div class="form-group mgTop" id="myFile">
-                <div class="" id="inputs">
-                    <!--<input id="file-1" type="file" name="img_data[]"  class="file-loading" data-overwrite-initial="false" data-min-file-count="1">-->
+            <div class="form-group mgTop" id="myFile" style="display:none;">
+                <div class="file-loading">
+                    <input id="file-1" type="file" name="img_data[]" multiple class="file-loading" data-overwrite-initial="false" data-min-file-count="1">
                 </div>
             </div>
         </div>
@@ -105,8 +105,8 @@
         showUpload: false,//不显示上传按钮
         maxFileSize: 25600,
 //        maxFilePreviewSize: 25600, // 25 MB
-        maxFilesNum: 1,
-        maxFileCount: 1,
+        maxFilesNum: 9,
+        maxFileCount: 9,
         //allowedFileTypes: ['image', 'video', 'flash'],
         layoutTemplates:{
 //            actionDelete:'',//去除上传预览的缩略图中的删除图标
@@ -136,10 +136,9 @@
         $('#myWeek').html(getWeek());//显示星期几
 
         $('#myBtn').on('click',function(){
-//            $('#myBtn').hide();
-            var str;
-//            str = '<input id="file-1" type="file" name="img_data[]"  class="file-loading" data-overwrite-initial="false">';
-            $('#inputs').prepend("<input type='file' name='img_data[]'>");
+            $('#myBtn').hide();
+            $('#myFile').show();
+
         });
     });
     //获取时间：年-月-日
