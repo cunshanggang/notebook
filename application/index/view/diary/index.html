@@ -22,7 +22,7 @@
         /*@media(max-width: 767px){body{background-color:red;}}*/
 
         @media screen and (min-width:1200px){
-            .thumbnail .img{width:130px;height:100px;}
+            .thumbnail .img{width:200px;height:100px;}
         }
         @media screen and (min-width: 960px) and (max-width: 1199px){
             /*body{background-color:green;}*/
@@ -31,37 +31,31 @@
             body{background-color:red;}
         }
         @media only screen and (max-width: 479px) {
-            body{font-size:18px;}
-            #title{width:300px;}
-            .myText{width:300px;margin:0 auto;}
-            .fontS,.file-drop-zone-title,.file-caption-name,.myText,#title{font-size:12px;}
+            .fontS{font-size:12px;}
             .head{width:300px;margin:0 auto;}
-            .btn-wd{width:325px;margin:0 auto;}
             .floatLeft{float:left;}
-            .mgLeft{margin-left:60px;}
-            /*.thumbnail,.img{width:170px;height:120px;margin:0 auto;}*/
+            .thumbnail .img{width:170px;height:120px;margin:0 auto;}
         }
         .mgTop{margin-top:10px;}
-
     </style>
 </head>
 <body>
-<form class="form-horizontal" method="post" action="{:url('Diary/add')}" enctype="multipart/form-data">
+<div class="container">
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
-        <span class="col-sm-2 mgTop fontS floatLeft" id="myDate">2018年06月25日</span>
-        <span class="col-sm-1 mgTop fontS floatLeft" id="myWeek">星期一</span>
-        <span class="col-sm-1 mgTop fontS floatLeft" id="weather">晴</span>
+        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月25日</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">星期一</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">晴</span>
     </div>
     <hr style="width:80%;margin:0 auto;">
     <div class="col-sm-offset-2 col-sm-6 mgTop">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">我是幸运的</h3>
+                <h3 class="panel-title fontS text-center">我是幸运的</h3>
             </div>
-            <div class="panel-body">
-                我是幸运的	今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。
+            <div class="panel-body fontS">
+                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。
             </div>
             <!--图片-->
             <div class="row">
@@ -87,98 +81,53 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-6 btn-wd">
-            <button type="button" class="btn btn-default" id="myBtn" style="width:100px;height:100px;">
-                <i class="glyphicon glyphicon-plus" style="font-size:25px;color:LightGrey;"></i>
-            </button>
-            <div class="form-group mgTop" id="myFile">
-                <div class="" id="inputs">
-                    <!--<input id="file-1" type="file" name="img_data[]"  class="file-loading" data-overwrite-initial="false" data-min-file-count="1">-->
+</div>
+<div class="container">
+    <div class="head mgTop">
+        <div class="col-sm-offset-2 col-sm-1">
+        </div>
+        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月25日</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">星期一</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">晴</span>
+    </div>
+    <hr style="width:80%;margin:0 auto;">
+    <div class="col-sm-offset-2 col-sm-6 mgTop">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title fontS text-center">我是幸运的</h3>
+            </div>
+            <div class="panel-body fontS">
+                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。
+            </div>
+            <!--图片-->
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0a4ff5d1ef717baa9e9c44d216c887df.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0c7f71099454cc0c0efea2f03780ae23.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0e0baf5fb8cb7019178af68cef1e5883.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/1d035c2a87710ccb668458b2baa7a02c.png" alt="...">
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10 btn-wd">
-            <button type="submit" class="btn btn-default">提交</button>
-        </div>
-    </div>
-</form>
+</div>
 <script type="text/javascript">
-    // 上传文件插件 start
-    $("#file-1").fileinput({
-        language:'zh',
-        theme: 'fa',
-        uploadUrl: '#', // you must set a valid URL here else you will get an error
-        uploadAsync: true,
-        autoReplace: false,
-        enctype: 'multipart/form-data',
-        allowedFileExtensions: ['jpg', 'png', 'gif'],
-        overwriteInitial: false,//不覆盖已存在的图片
-        showUpload: false,//不显示上传按钮
-        maxFileSize: 25600,
-//        maxFilePreviewSize: 25600, // 25 MB
-        maxFilesNum: 1,
-        maxFileCount: 1,
-        //allowedFileTypes: ['image', 'video', 'flash'],
-        layoutTemplates:{
-//            actionDelete:'',//去除上传预览的缩略图中的删除图标
-            actionUpload:''//去除上传预览缩略图中的上传图片
-//            actionZoom:''//去除上传预览缩略图中查看详情预览的缩略图标
-        }
-//        slugCallback: function (filename) {
-//            return filename.replace('(', '_').replace(']', '_');
-////            return filename;
-//
-//        }
-        /*
-        uploadExtraData: function() {
-        return {
-//                weather: $("#weather").val(),
-//                title: $("#title").val(),
-//                content: $("#content").val()
-        };
-    }
-    }).on("filebatchselected", function(event, files) {
-        $("#file-1").fileinput("upload");
-        */
-    });
-    //上传文件插件 end
-    $(function () {
-        $('#myDate').html(getTime());//显示年月日
-        $('#myWeek').html(getWeek());//显示星期几
 
-        $('#myBtn').on('click',function(){
-//            $('#myBtn').hide();
-            var str;
-//            str = '<input id="file-1" type="file" name="img_data[]"  class="file-loading" data-overwrite-initial="false">';
-            $('#inputs').prepend("<input type='file' name='img_data[]'>");
-        });
-    });
-    //获取时间：年-月-日
-    function getTime() {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth()+1;
-        var day = date.getDate();
-
-        var now_time = year+"年"+month+"月"+day+"日";
-
-        return now_time;
-    }
-
-    //获取星期几
-    function getWeek() {
-        var a = new Array("日","一","二","三","四","五","六");
-        var week = new Date().getDay();
-        var str = "星期"+a[week];
-
-        return str;
-    }
 </script>
 </body>
 </html>

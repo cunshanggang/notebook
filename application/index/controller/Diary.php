@@ -24,18 +24,20 @@ class Diary extends Controller {
 //        $pic_url = substr($pic_url,0,-1);
         if (request()->isPost()){
             $files = request()->file('img_data');
-            $url = $this->upload($files);
-            $pic_url = '';
-            foreach($url as $k=>$v) {
-                $pic_url .= $v.";";
+            if($files) {
+                $url = $this->upload($files);
+                $pic_url = '';
+                foreach($url as $k=>$v) {
+                    $pic_url .= $v.";";
+                }
+                $pic_url = substr($pic_url,0,-1);
             }
-        $pic_url = substr($pic_url,0,-1);
         //添加到数据库
         $m = model("Diary");
         $data['weather'] = $_POST['weather'];
         $data['title']   = $_POST['title'];
         $data['content'] = $_POST['content'];
-        $data['pic_url'] = $pic_url;
+        $data['pic_url'] = !empty($pic_url) ? $pic_url : '';
         $data['add_time'] = time();
 
         $r = $m->insert($data);
