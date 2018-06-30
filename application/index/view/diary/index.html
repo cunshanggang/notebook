@@ -42,28 +42,47 @@
 </head>
 <body>
 <div class="container">
+    {volist name="list" id="vo"}
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
-        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月25日</span>
-        <span class="col-sm-1 mgTop fontS floatLeft">星期一</span>
-        <span class="col-sm-1 mgTop fontS floatLeft">晴</span>
+        <span class="col-sm-2 mgTop fontS floatLeft">{$vo['add_time']|date="Y-m-d",###}</span>
+        <span class="col-sm-1 mgTop fontS floatLeft">
+            {switch name="$vo['add_time']|date='w',###"}
+                {case value="1"}星期一{/case}
+                {case value="2"}星期二{/case}
+                {case value="3"}星期三{/case}
+                {case value="4"}星期四{/case}
+                {case value="5"}星期五{/case}
+                {case value="6"}星期六{/case}
+                {default /}星期日
+            {/switch}
+        </span>
+        <span class="col-sm-1 mgTop fontS floatLeft">
+            {switch name="$vo.weather"}
+                {case value="1"}晴{/case}
+                {case value="2"}阴{/case}
+                {case value="3"}雨{/case}
+                {case value="4"}雾{/case}
+                {/default}雪
+            {/switch}
+        </span>
     </div>
     <hr style="width:80%;margin:0 auto;">
     <div class="col-sm-offset-2 col-sm-6 mgTop">
         <div class="panel panel-default">
             <!--部分内容start-->
             <div class="panel-heading">
-                <h3 class="panel-title fontS text-center">我是幸运的</h3>
+                <h3 class="panel-title fontS text-center">{$vo['title']}</h3>
             </div>
             <div class="panel-body fontS" id="part_content">
-                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。我始终没有那么多好的运气，这是我比谁都清楚的。
+                &nbsp;&nbsp;&nbsp;&nbsp;{$vo['content']}
             </div>
             <span id="show">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">全文</a></span>
             <!--部分内容end-->
             <!--全文内容 start-->
             <div class="panel-body fontS" id="all_content" style="display:none;">
-                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。我始终没有那么多好的运气，这是我比谁都清楚的。
+                &nbsp;&nbsp;&nbsp;&nbsp;{$vo['content']}。
                 <a href="#" id="fold">收起</a>
             </div>
 
@@ -93,49 +112,7 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="head mgTop">
-        <div class="col-sm-offset-2 col-sm-1">
-        </div>
-        <span class="col-sm-2 mgTop fontS floatLeft">2018年06月25日</span>
-        <span class="col-sm-1 mgTop fontS floatLeft">星期一</span>
-        <span class="col-sm-1 mgTop fontS floatLeft">晴</span>
-    </div>
-    <hr style="width:80%;margin:0 auto;">
-    <div class="col-sm-offset-2 col-sm-6 mgTop">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title fontS text-center">我是幸运的</h3>
-            </div>
-            <div class="panel-body fontS">
-                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。
-            </div>
-            <!--图片-->
-            <div class="row">
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0a4ff5d1ef717baa9e9c44d216c887df.png" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0c7f71099454cc0c0efea2f03780ae23.png" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/0e0baf5fb8cb7019178af68cef1e5883.jpg" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img-responsive img" src="../../../__PUBLIC__/uploads/20180624/1d035c2a87710ccb668458b2baa7a02c.png" alt="...">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {/volist}
 </div>
 <script type="text/javascript">
 $(function () {

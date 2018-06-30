@@ -11,17 +11,17 @@ use think\Request;
 
 class Diary extends Controller {
     public function index() {
+        $list = model("diary")->order('id desc')->select();
+        foreach($list as $key=>$value) {
+            if(!empty($value['pic_url'])) {
+                $list[$key]['pic_url'] = explode(";",$value['pic_url']);
+            }
+        }
+        $this->assign("list",$list);
         return $this->fetch();
     }
 
     public function add() {
-
-//        $url = $this->upload($files);
-//        $pic_url = '';
-//        foreach($url as $k=>$v) {
-//            $pic_url .= $v.";";
-//        }
-//        $pic_url = substr($pic_url,0,-1);
         if (request()->isPost()){
             $files = request()->file('img_data');
             if($files) {
