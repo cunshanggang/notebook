@@ -31,12 +31,13 @@
             body{background-color:red;}
         }
         @media only screen and (max-width: 479px) {
-            .fontS{font-size:12px;}
+            .fontS{font-size:13px;}
             .head{width:300px;margin:0 auto;}
             .floatLeft{float:left;}
             .thumbnail .img{width:170px;height:120px;margin:0 auto;}
         }
         .mgTop{margin-top:10px;}
+        #part_content{height:210px;overflow: hidden;text-overflow: ellipsis;}
     </style>
 </head>
 <body>
@@ -51,14 +52,24 @@
     <hr style="width:80%;margin:0 auto;">
     <div class="col-sm-offset-2 col-sm-6 mgTop">
         <div class="panel panel-default">
+            <!--部分内容start-->
             <div class="panel-heading">
                 <h3 class="panel-title fontS text-center">我是幸运的</h3>
             </div>
-            <div class="panel-body fontS">
-                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。
+            <div class="panel-body fontS" id="part_content">
+                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。我始终没有那么多好的运气，这是我比谁都清楚的。
             </div>
+            <span id="show">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">全文</a></span>
+            <!--部分内容end-->
+            <!--全文内容 start-->
+            <div class="panel-body fontS" id="all_content" style="display:none;">
+                &nbsp;&nbsp;&nbsp;&nbsp;今天看房，下了一个豪华单间的定金1000元，但是回到租房之后，房东突然打电话过来说：这个月底有一个一房一厅的房子空出来，问我要不要，天啊，这真是电视剧里的剧情，后来我把定金退了，被扣了100块，退了900，但是还是非常开心，因为我只需要从603搬到501，还有租金是：850，好不容易加了点工资，又给了房东，但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。但是最终还是要感谢运气，不知道哪里来的运气，希望这些好运气不会被我这样过度使用，我始终没有那么多好的运气，这是我比谁都清楚的。我始终没有那么多好的运气，这是我比谁都清楚的。
+                <a href="#" id="fold">收起</a>
+            </div>
+
+            <!--全文内容 end-->
             <!--图片-->
-            <div class="row">
+            <div class="row mgTop">
                 <div class="col-xs-6 col-md-3">
                     <a href="#" class="thumbnail">
                         <img style="" class="img" src="../../../__PUBLIC__/uploads/20180624/0a4ff5d1ef717baa9e9c44d216c887df.png" alt="...">
@@ -127,7 +138,23 @@
     </div>
 </div>
 <script type="text/javascript">
+$(function () {
+    var btnShow=$("#show");
+    var allContent=$("#all_content");
+    var partContent=$("#part_content");
+    var btnFold=$("#fold");
+    btnShow.on("click",function () {
+        allContent.toggle();
+        partContent.hide();
+        btnShow.hide();
+    });
 
+    btnFold.on("click",function () {
+        allContent.toggle();
+        partContent.show();
+        btnShow.show();
+    });
+});
 </script>
 </body>
 </html>
