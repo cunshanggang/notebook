@@ -37,12 +37,12 @@
             .thumbnail .img{width:170px;height:120px;margin:0 auto;}
         }
         .mgTop{margin-top:10px;}
-        #part_content{height:210px;overflow: hidden;text-overflow: ellipsis;}
+        #part_content{height:210px;overflow:hidden;text-overflow:ellipsis;}
     </style>
 </head>
 <body>
+{volist name="list" id="vo"}
 <div class="container">
-    {volist name="list" id="vo"}
     <div class="head mgTop">
         <div class="col-sm-offset-2 col-sm-1">
         </div>
@@ -64,7 +64,7 @@
                 {case value="2"}阴{/case}
                 {case value="3"}雨{/case}
                 {case value="4"}雾{/case}
-                {/default}雪
+                {default  /}雪
             {/switch}
         </span>
     </div>
@@ -78,42 +78,28 @@
             <div class="panel-body fontS" id="part_content">
                 &nbsp;&nbsp;&nbsp;&nbsp;{$vo['content']}
             </div>
-            <span id="show">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">全文</a></span>
+            <span id="show">&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);">全文</a></span>
             <!--部分内容end-->
             <!--全文内容 start-->
             <div class="panel-body fontS" id="all_content" style="display:none;">
                 &nbsp;&nbsp;&nbsp;&nbsp;{$vo['content']}。
-                <a href="#" id="fold">收起</a>
+                <a href="javascript:void(0);" id="fold">收起</a>
             </div>
-
             <!--全文内容 end-->
             <!--图片-->
             <div class="row mgTop">
+                {volist name="$vo['pic_url']" id="pic_url"}
                 <div class="col-xs-6 col-md-3">
                     <a href="#" class="thumbnail">
-                        <img style="" class="img" src="../../../__PUBLIC__/uploads/20180624/0a4ff5d1ef717baa9e9c44d216c887df.png" alt="...">
+                        <img style="" class="img" src="../../../__PUBLIC__/uploads/{$pic_url}" alt="...">
                     </a>
                 </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img" src="../../../__PUBLIC__/uploads/20180624/0c7f71099454cc0c0efea2f03780ae23.png" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img" src="../../../__PUBLIC__/uploads/20180624/0e0baf5fb8cb7019178af68cef1e5883.jpg" alt="...">
-                    </a>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img style="" class="img" src="../../../__PUBLIC__/uploads/20180624/1d035c2a87710ccb668458b2baa7a02c.png" alt="...">
-                    </a>
-                </div>
+                {/volist}
             </div>
         </div>
     </div>
-    {/volist}
 </div>
+{/volist}
 <script type="text/javascript">
 $(function () {
     var btnShow=$("#show");
